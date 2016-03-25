@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="co.thepartyon.cliqbac.MainActivity"
     tools:showIn="@layout/activity_main"
-    android:background="#000000">
+    android:background="#DBE0DB">
 
     <Button
         android:layout_width="match_parent"
@@ -42,7 +42,8 @@
         android:layout_alignParentEnd="false"
         android:background="@drawable/ic_account_circle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp" />
+        android:layout_marginTop="150dp"
+        android:contentDescription="n/a" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

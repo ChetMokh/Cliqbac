@@ -13,12 +13,12 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
+        android:inputType="textImeMultiLine"
         android:ems="10"
         android:id="@+id/partyTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:hint="Party Title"
+        android:hint="@string/party_title_hint"
         android:textAlignment="center"
         android:textSize="@dimen/abc_text_size_display_1_material"
         android:background="@android:color/transparent" />
@@ -29,10 +29,43 @@
         android:inputType="time"
         android:ems="10"
         android:id="@+id/startTimeEditText"
+        android:background="@android:drawable/edit_text"
+        android:focusableInTouchMode="false"
+        android:windowSoftInputMode="stateHidden"
+        android:hint="Tap to set time"
+        android:layout_marginTop="29dp"
         android:layout_below="@+id/partyTitle"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp"
-        android:hint="Time"
-        android:background="@android:color/transparent" />
+        android:layout_alignStart="@+id/startDateEditText"
+        android:paddingBottom="10dp"
+        android:padding="30dp"
+        android:layout_alignParentRight="false"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/startDateEditText"
+        android:focusableInTouchMode="false"
+        android:windowSoftInputMode="stateHidden"
+        android:hint="Tap to set date"
+        android:layout_below="@+id/startTimeEditText"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:background="@android:drawable/edit_text"
+        android:linksClickable="false"
+        android:layout_alignParentRight="false"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirmButton"
+        android:text="@string/createEventButton"
+        android:background="#52a83c"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

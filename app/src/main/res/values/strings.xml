@@ -24,4 +24,5 @@
         completions."
     </string>
     <string name="prompt_phone">Phone</string>
+    <string name="party_title_hint">Tap to name party</string>
 </resources>
