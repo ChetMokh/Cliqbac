@@ -25,4 +25,6 @@
     </string>
     <string name="prompt_phone">Phone</string>
     <string name="party_title_hint">Tap to name party</string>
+    <string name="sign_in">Sign in</string>
+    <string name="profile_button">n/a</string>
 </resources>

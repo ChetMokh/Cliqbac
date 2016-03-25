@@ -34,9 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //Instantiate Buttons + Set onClick Listeners
-        View gotoNav = (Button) findViewById(R.id.devButton);
-        gotoNav.setOnClickListener(this);
-
         View profileButton = (ImageButton) findViewById(R.id.profileButton);
         profileButton.setOnClickListener(this);
 
@@ -74,13 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override //Everything you click goes here
     public void onClick(View v) {
 
-        if(v.getId() == R.id.devButton)
-        {
-            Intent i = new Intent(this, NavigationActivity.class); //Start the nav activity, basically gonna be main
-            startActivity(i);
-        }
-
-        else if(v.getId() == R.id.profileButton) //For now this will be the login activity
+        if(v.getId() == R.id.profileButton) //For now this will be the login activity
         {
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
