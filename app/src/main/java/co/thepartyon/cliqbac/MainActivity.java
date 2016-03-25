@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,10 +30,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setAction("Action", null).show();
             }
         });
+        */
 
 
+        //Instantiate Buttons + Set onClick Listeners
         View gotoNav = (Button) findViewById(R.id.devButton);
         gotoNav.setOnClickListener(this);
+
+        View profileButton = (ImageButton) findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(this);
+
+        View createEventButton = (Button) findViewById(R.id.createEventButton);
+        createEventButton.setOnClickListener(this);
+
+
+
+
     }
 
     @Override
@@ -63,6 +77,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v.getId() == R.id.devButton)
         {
             Intent i = new Intent(this, NavigationActivity.class); //Start the nav activity, basically gonna be main
+            startActivity(i);
+        }
+
+        else if(v.getId() == R.id.profileButton) //For now this will be the login activity
+        {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
+
+        else if(v.getId() == R.id.createEventButton)
+        {
+            Intent i = new Intent(this, CreatePartyActivity.class);
             startActivity(i);
         }
     }
