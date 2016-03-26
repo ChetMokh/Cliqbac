@@ -32,15 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         */
 
-
         //Instantiate Buttons + Set onClick Listeners
         View profileButton = (ImageButton) findViewById(R.id.profileButton);
         profileButton.setOnClickListener(this);
 
         View createEventButton = (Button) findViewById(R.id.createEventButton);
         createEventButton.setOnClickListener(this);
-
-
 
 
     }

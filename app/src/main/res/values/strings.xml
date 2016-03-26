@@ -27,4 +27,6 @@
     <string name="party_title_hint">Tap to name party</string>
     <string name="sign_in">Sign in</string>
     <string name="profile_button">n/a</string>
+    <string name="title_activity_maps">Party Map</string>
+    <string name="choose_location">Choose Location</string>
 </resources>
