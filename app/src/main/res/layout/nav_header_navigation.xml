@@ -31,6 +31,6 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cliqbac@csumb.edu" />
+        android:text="cliqbac@gmail.com" />
 
 </LinearLayout>
