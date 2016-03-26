@@ -29,4 +29,10 @@
     <string name="profile_button">n/a</string>
     <string name="title_activity_maps">Party Map</string>
     <string name="choose_location">Choose Location</string>
+    <string name="time_label">Time</string>
+    <string name="date_label">Date</string>
+    <string name="location_label">Location</string>
+    <string name="gps_network_not_enabled">Please enable location settings.</string>
+    <string name="open_location_settings">Enable Location</string>
+    <string name="Cancel">Cancel</string>
 </resources>

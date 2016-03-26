@@ -7,4 +7,5 @@
     <color name="cbLightGreen">#45bf55</color>
     <color name="primary_cb_light">#45bf55</color>
     <color name="primary_dark_material_light">#dbe0db</color>
+    <color name="primary_material_dark">#ffffff</color>
 </resources>

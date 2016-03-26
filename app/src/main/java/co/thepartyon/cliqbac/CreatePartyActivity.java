@@ -1,7 +1,6 @@
 package co.thepartyon.cliqbac;
 
 import android.app.DatePickerDialog;
-import android.app.FragmentManager;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -12,14 +11,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
@@ -30,6 +29,8 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
     static final LatLng KIEL = new LatLng(53.551, 9.993);
     boolean showMap;
     private GoogleMap map;
+    int PLACE_PICKER_REQUEST = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +101,16 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
         else if(v.getId() == R.id.locationEditText)
         {
-            Intent i = new Intent(this, MapsActivity.class);
-            startActivity(i);
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+            try {
+                startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+            } catch (GooglePlayServicesRepairableException e) {
+                e.printStackTrace();
+            } catch (GooglePlayServicesNotAvailableException e) {
+                e.printStackTrace();
+            }
+
 
             /*
 
@@ -125,6 +134,26 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
             Snackbar.make(v, "Confirmed.", Snackbar.LENGTH_SHORT).show();
         }
 
+
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        final EditText location = (EditText) findViewById(R.id.locationEditText);
+
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                String toastMsg = String.format("Place: %s", place.getName());
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+
+                //TODO: Store that place as the party's location in SQLite
+                location.setText(place.getName());
+
+            }
+
+        }
 
 
     }
