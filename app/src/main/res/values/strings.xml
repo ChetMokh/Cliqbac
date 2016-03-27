@@ -35,4 +35,6 @@
     <string name="gps_network_not_enabled">Please enable location settings.</string>
     <string name="open_location_settings">Enable Location</string>
     <string name="Cancel">Cancel</string>
+    <string name="inviteFriendsButton">Invite Friends</string>
+
 </resources>
