@@ -23,7 +23,6 @@ public class HomeActivity extends AppCompatActivity
 
 
 
-
         //USE THIS TO GET NAVIGATION BAR ON OTHER ACTIVITES
         //--------------------------------------------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -88,7 +87,8 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            startActivity(new Intent(this, HomeActivity.class));
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.live) {
 
