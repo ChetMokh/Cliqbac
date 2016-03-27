@@ -78,6 +78,11 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
         drawableLeft = getResources().getDrawable(R.drawable.ic_mode_edit);
         drawableLeft.setAlpha(100);
 
+        partyTitle.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+        startTime.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+        startDate.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+        location.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+        description.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
 
     }
 
@@ -171,7 +176,7 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
         else
         {
-           // partyTitle.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+           //partyTitle.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
         }
     }
 

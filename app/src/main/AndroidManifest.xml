@@ -9,10 +9,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
-<<<<<<< HEAD
-
-=======
->>>>>>> 05ba937c6c85149fff649ab3a6e36976f5a2c9db
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -38,14 +34,10 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-<<<<<<< HEAD
-            android:label="@string/title_activity_navigation"
+            android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             android:theme="@style/CliqbacAppCompatTheme" />
-=======
-            android:label="@string/title_activity_home"
-            android:theme="@style/CliqbacTheme" />
->>>>>>> 05ba937c6c85149fff649ab3a6e36976f5a2c9db
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -76,10 +68,6 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".PartyActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/CliqbacAppCompatTheme" />
-        <activity
             android:name=".ReviewPartyActivity"
             android:label="@string/title_activity_review_party"
             android:theme="@style/CliqbacAppCompatTheme"></activity>
@@ -98,6 +86,7 @@
         <activity
             android:name=".PartyListActivity"
             android:label="@string/title_activity_party_list"
+            android:screenOrientation="portrait"
             android:theme="@style/CliqbacAppCompatTheme"></activity>
     </application>
 
