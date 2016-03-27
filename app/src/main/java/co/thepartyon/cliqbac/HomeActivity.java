@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -20,8 +19,6 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
 
         //USE THIS TO GET NAVIGATION BAR ON OTHER ACTIVITES
         //--------------------------------------------------------------------------------
@@ -34,10 +31,9 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //----------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------
 
-        View createEventButton = (Button) findViewById(R.id.createEventButton);
-        createEventButton.setOnClickListener(this);
+
     }
 
     public void onClick(View v) {
@@ -93,11 +89,10 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.live) {
             startActivity(new Intent(this, PartyActivity.class));
-
         } else if (id == R.id.future) {
-
+            startActivity(new Intent(this, PartyListActivity.class));
         } else if (id == R.id.past) {
-
+            startActivity(new Intent(this, PartyListActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

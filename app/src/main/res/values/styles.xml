@@ -32,8 +32,6 @@
     </style>
 
 
-
-
     <style name="CliqbacTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="CliqbacTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
