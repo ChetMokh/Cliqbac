@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -19,11 +21,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/CliqbacTheme">
+        android:theme="@style/CliqbacAppCompatTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/CliqbacTheme">
+            android:screenOrientation="portrait"
+            android:theme="@style/CliqbacAppCompatTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,18 +36,24 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/CliqbacTheme" />
+            android:screenOrientation="portrait"
+            android:theme="@style/CliqbacAppCompatTheme" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".CreatePartyActivity" />
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
+            android:theme="@style/CliqbacAppCompatTheme" />
+        <activity
+            android:name=".CreatePartyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CliqbacAppCompatTheme" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -58,7 +67,25 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".PartyActivity"></activity>
+        <activity
+            android:name=".PartyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CliqbacAppCompatTheme" />
+        <activity
+            android:name=".ReviewPartyActivity"
+            android:label="@string/title_activity_review_party"
+            android:theme="@style/CliqbacAppCompatTheme"></activity>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"   android:value="@string/facebook_app_id"/>
+
+
     </application>
 
 </manifest>

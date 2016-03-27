@@ -41,4 +41,12 @@
     <string name="time_edit_text">Tap to set time</string>
     <string name="location_edit_text">Tap to set location</string>
     <string name="date_edit_text">Tap to set date</string>
+    <string name="title_activity_review_party">ReviewPartyActivity</string>
+
+
+
+    <string name="facebook_app_id">215586675466175</string>
+    <string name="com_facebook_loginview_log_out_button">Log out</string>
+    <string name="com_facebook_loginview_log_in_button">Frogs</string>
+    <string name="com_facebook_loginview_log_in_button_long">Connect with Facebook</string>
 </resources>

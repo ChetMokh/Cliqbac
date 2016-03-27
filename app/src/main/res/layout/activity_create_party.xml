@@ -105,11 +105,12 @@
         android:layout_above="@+id/startDateEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:background="@android:drawable/edit_text"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
         android:layout_marginTop="30dp"
         android:hint="@string/description_edit_text"
         android:textAlignment="center"
         android:drawableRight="@drawable/ic_mode_edit"
-        android:drawablePadding="-50dp"/>
+        android:drawablePadding="-50dp"
+        android:autoText="true" />
 
 </RelativeLayout>

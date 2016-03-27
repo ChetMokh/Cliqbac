@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/cbLightGreen</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
@@ -19,9 +19,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="CliqbacTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="CliqbacAppCompatTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary_cb_light</item>
         <item name="colorPrimaryDark">@color/primary_material_dark</item>
+        <item name="colorAccent">@color/primary_cb_light</item>
     </style>
 
     <style name="NavDrawerTextStyle" parent="Base.TextAppearance.AppCompat">
@@ -32,11 +33,22 @@
     </style>
 
 
-
-
     <style name="CliqbacTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="CliqbacTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CliqbacAppCompatTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="CliqbacAppCompatTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!-- FB Button Changes -->
+    <style name="FacebookLoginButton">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:text">DAWG in</item>
+    </style>
 
 
 </resources>
