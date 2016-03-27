@@ -74,6 +74,7 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, PartyActivity.class));
             return true;
         }
 
@@ -91,16 +92,13 @@ public class HomeActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
 
         } else if (id == R.id.live) {
+            startActivity(new Intent(this, PartyActivity.class));
 
         } else if (id == R.id.future) {
 
         } else if (id == R.id.past) {
 
-        } /*else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
