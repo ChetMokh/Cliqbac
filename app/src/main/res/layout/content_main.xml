@@ -15,6 +15,27 @@
     tools:showIn="@layout/activity_main"
     android:weightSum="1">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/createEventButton"
+        android:text="@string/createEventButton"
+        android:background="#FFFFFF"
+        android:layout_above="@+id/joinEventButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/joinEventButton"
+        android:text="@string/joinEventButton"
+        android:layout_marginBottom="50dp"
+        android:background="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textAllCaps="false"/>
 
     <ImageButton
         android:layout_width="120dp"

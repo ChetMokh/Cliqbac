@@ -44,7 +44,7 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
         View startDate = (EditText) findViewById(R.id.startDateEditText);
         startDate.setOnClickListener(this);
 
-        View confirm = (Button) findViewById(R.id.confirmButton);
+        View confirm = (Button) findViewById(R.id.inviteFriendsButton);
         confirm.setOnClickListener(this);
 
         View location = (EditText) findViewById(R.id.locationEditText);
@@ -128,7 +128,7 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
         }
 
-        else if(v.getId() == R.id.confirmButton) //User clicks the confirm button, data is stored in DB
+        else if(v.getId() == R.id.inviteFriendsButton) //User clicks the confirm button, data is stored in DB
         {
             //Store info in DB and move to next activity
             Snackbar.make(v, "Confirmed.", Snackbar.LENGTH_SHORT).show();
@@ -149,7 +149,7 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
                 Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
 
                 //TODO: Store that place as the party's location in SQLite
-                location.setText(place.getName());
+                location.setText(place.getAddress());
 
             }
 
