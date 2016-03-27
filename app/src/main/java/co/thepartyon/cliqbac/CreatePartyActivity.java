@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
@@ -26,7 +27,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-public class CreatePartyActivity extends AppCompatActivity implements View.OnClickListener  {
+public class CreatePartyActivity extends AppCompatActivity implements View.OnClickListener,View.OnFocusChangeListener  {
 
     static final LatLng HAMBURG = new LatLng(53.558, 9.927);
     static final LatLng KIEL = new LatLng(53.551, 9.993);
@@ -34,6 +35,15 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
     private GoogleMap map;
     int PLACE_PICKER_REQUEST = 1;
     int PICK_CONTACT = 2016;
+    EditText partyTitle;
+    EditText startTime;
+    EditText startDate;
+    EditText location;
+    EditText description;
+    Button confirm;
+
+
+    Drawable drawableLeft;
 
 
     @Override
@@ -42,25 +52,42 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_create_party);
 
         //Instantiate Buttons + Set onClick Listeners
-        View startTime = (EditText) findViewById(R.id.startTimeEditText);
+        partyTitle = (EditText) findViewById(R.id.partyTitle);
+        partyTitle.setOnClickListener(this);
+
+        startTime = (EditText) findViewById(R.id.startTimeEditText);
         startTime.setOnClickListener(this);
 
-        View startDate = (EditText) findViewById(R.id.startDateEditText);
+        startDate = (EditText) findViewById(R.id.startDateEditText);
         startDate.setOnClickListener(this);
 
-        View confirm = (Button) findViewById(R.id.inviteFriendsButton);
+        confirm = (Button) findViewById(R.id.inviteFriendsButton);
         confirm.setOnClickListener(this);
 
-        View location = (EditText) findViewById(R.id.locationEditText);
+        location = (EditText) findViewById(R.id.locationEditText);
         location.setOnClickListener(this);
+
+        description = (EditText) findViewById(R.id.descriptionEditText);
+        description.setOnClickListener(this);
+
+
+
+        //Set drawable icon transparency to be gray instead of black
+        drawableLeft = getResources().getDrawable(R.drawable.ic_mode_edit);
+        drawableLeft.setAlpha(100);
+
 
     }
 
+    //On Click
     @Override
     public void onClick(View v) {
+
+
         if(v.getId() == R.id.startTimeEditText) //Click Time, bring up TimePickerDialog
         {
-            final EditText startTime = (EditText) v;
+            //startTime.setCompoundDrawables(null,null,null,null); //Remove the edit icon
+
             Calendar mcurrentTime = Calendar.getInstance();
             int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
             int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -84,7 +111,8 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
         else if(v.getId() == R.id.startDateEditText) //Click Date, bring up DatePickerDialog
         {
-            final EditText startDate = (EditText) v;
+            //startDate.setCompoundDrawables(null,null,null,null); //Remove the edit icon
+            //final EditText startDate = (EditText) v;
             Calendar mcurrentDate = Calendar.getInstance();
             int day = mcurrentDate.get(Calendar.DAY_OF_MONTH);
             int month = mcurrentDate.get(Calendar.MONTH);
@@ -105,6 +133,7 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
         else if(v.getId() == R.id.locationEditText)
         {
+            //location.setCompoundDrawables(null,null,null,null); //Remove the edit icon
             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
             try {
@@ -114,21 +143,6 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
             } catch (GooglePlayServicesNotAvailableException e) {
                 e.printStackTrace();
             }
-
-
-            /*
-
-            //Move the camera instantly to hamburg with a zoom of 15.
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
-
-            // Zoom in, animating the camera.
-            map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-
-            */
-
-
-
-
 
         }
 
@@ -145,9 +159,24 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    //On Focus Change (For Dynamic Drawable Icons on top of Views
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if(hasFocus)
+        {
+           // partyTitle.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        }
+
+        else
+        {
+           // partyTitle.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+        }
+    }
+
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        final EditText location = (EditText) findViewById(R.id.locationEditText);
+        //final EditText location = (EditText) findViewById(R.id.locationEditText);
 
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
@@ -156,7 +185,7 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
                 Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
 
                 //TODO: Store that place as the party's location in SQLite
-                location.setText(place.getAddress());
+                location.setText(place.getName());
 
             }
 

@@ -37,4 +37,8 @@
     <string name="open_location_settings">Enable Location</string>
     <string name="Cancel">Cancel</string>
     <string name="inviteFriendsButton">Invite Friends</string>
+    <string name="description_edit_text">Tap to enter description</string>
+    <string name="time_edit_text">Tap to set time</string>
+    <string name="location_edit_text">Tap to set location</string>
+    <string name="date_edit_text">Tap to set date</string>
 </resources>
