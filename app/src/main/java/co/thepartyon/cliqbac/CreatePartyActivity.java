@@ -3,6 +3,9 @@ package co.thepartyon.cliqbac;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,13 +26,14 @@ import com.google.android.gms.maps.model.LatLng;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-public class CreatePartyActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreatePartyActivity extends AppCompatActivity implements View.OnClickListener  {
 
     static final LatLng HAMBURG = new LatLng(53.558, 9.927);
     static final LatLng KIEL = new LatLng(53.551, 9.993);
     boolean showMap;
     private GoogleMap map;
     int PLACE_PICKER_REQUEST = 1;
+    int PICK_CONTACT = 2016;
 
 
     @Override
@@ -130,8 +134,11 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
         else if(v.getId() == R.id.inviteFriendsButton) //User clicks the confirm button, data is stored in DB
         {
-            //Store info in DB and move to next activity
-            Snackbar.make(v, "Confirmed.", Snackbar.LENGTH_SHORT).show();
+            //Go to Invite Friends
+            Intent i = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+            startActivityForResult(i, PICK_CONTACT);
+
+            //Snackbar.make(v, "Confirmed.", Snackbar.LENGTH_SHORT).show();
         }
 
 
@@ -153,6 +160,15 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
             }
 
+        }
+
+        if (requestCode == PICK_CONTACT && resultCode == RESULT_OK) {
+            Uri contactUri = data.getData();
+            Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+            cursor.moveToFirst();
+            int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+            Toast.makeText(this, cursor.getString(column), Toast.LENGTH_SHORT).show();
         }
 
 
