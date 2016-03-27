@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -34,8 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View profileButton = (ImageButton) findViewById(R.id.profileButton);
         profileButton.setOnClickListener(this);
 
-        View createEventButton = (Button) findViewById(R.id.createEventButton);
-        createEventButton.setOnClickListener(this);
+
 
 
     }
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent i = new Intent(this, NavigationActivity.class);
+            Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
             return true;
         }
@@ -71,12 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v.getId() == R.id.profileButton) //For now this will be the login activity
         {
             Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
-        }
-
-        else if(v.getId() == R.id.createEventButton)
-        {
-            Intent i = new Intent(this, CreatePartyActivity.class);
             startActivity(i);
         }
     }
