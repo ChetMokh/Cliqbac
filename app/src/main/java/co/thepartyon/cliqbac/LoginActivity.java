@@ -201,7 +201,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isPhoneValid(String phone) {
         //TODO: Replace this with your own logic
-        return phone.matches("\\d{10}");
+        return true;//phone.matches("\\d{10}");
     }
 
     private boolean isPasswordValid(String password) {
