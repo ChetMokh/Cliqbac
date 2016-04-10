@@ -96,6 +96,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(this, PartyListActivity.class));
         } else if (id == R.id.past) {
             startActivity(new Intent(this, PartyListActivity.class));
+        } else if (id == R.id.friends) {
+            startActivity(new Intent(this, FriendsActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

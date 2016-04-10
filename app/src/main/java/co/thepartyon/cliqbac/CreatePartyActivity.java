@@ -10,6 +10,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreatePartyActivity extends AppCompatActivity implements View.OnClickListener,View.OnFocusChangeListener  {
@@ -36,7 +38,8 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
     boolean showMap;
     private GoogleMap map;
     int PLACE_PICKER_REQUEST = 1;
-    int PICK_CONTACT = 2016;
+    int PICK_CONTACT_REQUEST = 78;
+    int MAX_PICK_CONTACT = 100;
     EditText partyTitle;
     EditText startTime;
     EditText startDate;
@@ -45,7 +48,10 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
     Button confirm;
 
 
-    Drawable drawableLeft;
+    Drawable editIcon;
+    Drawable dateIcon;
+    Drawable timeIcon;
+    Drawable locationIcon;
 
 
     @Override
@@ -75,14 +81,20 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
 
         //Set drawable icon transparency to be gray instead of black
-        drawableLeft = getResources().getDrawable(R.drawable.ic_mode_edit);
-        drawableLeft.setAlpha(100);
+        editIcon = getResources().getDrawable(R.drawable.ic_mode_edit);
+        editIcon.setAlpha(100);
+        dateIcon = getResources().getDrawable(R.drawable.ic_date_range);
+        dateIcon.setAlpha(100);
+        timeIcon = getResources().getDrawable(R.drawable.ic_alarm);
+        timeIcon.setAlpha(100);
+        locationIcon = getResources().getDrawable(R.drawable.ic_edit_location);
+        locationIcon.setAlpha(100);
 
-        partyTitle.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
-        startTime.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
-        startDate.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
-        location.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
-        description.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+        partyTitle.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        startTime.setCompoundDrawablesWithIntrinsicBounds(null, null, dateIcon, null);
+        startDate.setCompoundDrawablesWithIntrinsicBounds(null, null, timeIcon, null);
+        location.setCompoundDrawablesWithIntrinsicBounds(null, null, locationIcon, null);
+        description.setCompoundDrawablesWithIntrinsicBounds(null, null, editIcon, null);
 
     }
 
@@ -156,8 +168,11 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
         else if(v.getId() == R.id.inviteFriendsButton) //User clicks the confirm button, data is stored in DB
         {
             //Go to Invite Friends
-            Intent i = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
-            startActivityForResult(i, PICK_CONTACT);
+            //Intent i = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+            //startActivityForResult(i, PICK_CONTACT);
+            //TODO: Multiple contacts in custom listview adapter
+            //Intent i = new Intent(this, ChooseGuestsActivity.class);
+            //startActivityForResult(i, PICK_CONTACT_REQUEST);
 
             //Snackbar.make(v, "Confirmed.", Snackbar.LENGTH_SHORT).show();
         }
@@ -194,20 +209,31 @@ public class CreatePartyActivity extends AppCompatActivity implements View.OnCli
 
 
                 //TODO: Store that place as the party's location in SQLite
-                location.setText(place.getName());
+                location.setText(place.getAddress());
 
 
             }
 
         }
 
-        if (requestCode == PICK_CONTACT && resultCode == RESULT_OK) {
+        if (requestCode == PICK_CONTACT_REQUEST && resultCode == RESULT_OK) {
+            /*
             Uri contactUri = data.getData();
             Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
             cursor.moveToFirst();
             int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
 
             Toast.makeText(this, cursor.getString(column), Toast.LENGTH_SHORT).show();
+            */
+
+            Bundle bundle =  data.getExtras();
+
+            String result= bundle.getString("result");
+            ArrayList<String> contacts = bundle.getStringArrayList("result");
+
+
+            //Log.i(TAG, "launchMultiplePhonePicker bundle.toString()= " + contactsPick.toString() );
+
         }
 
 

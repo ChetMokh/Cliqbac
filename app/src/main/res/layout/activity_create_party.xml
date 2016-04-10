@@ -23,7 +23,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:drawableRight="@drawable/ic_mode_edit"
-        android:drawablePadding="-25dp"/>
+        android:drawablePadding="-25dp"
+        android:textStyle="bold" />
 
     <Button
         android:layout_width="match_parent"
@@ -98,19 +99,20 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:inputType="textMultiLine"
+        android:layout_height="wrap_content"
+        android:inputType="text"
         android:ems="10"
         android:id="@+id/descriptionEditText"
-        android:layout_above="@+id/startDateEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:layout_marginTop="30dp"
+        android:focusableInTouchMode="false"
+        android:windowSoftInputMode="stateHidden"
         android:hint="@string/description_edit_text"
+        android:padding="30dp"
+        android:linksClickable="false"
         android:textAlignment="center"
         android:drawableRight="@drawable/ic_mode_edit"
-        android:drawablePadding="-50dp"
-        android:autoText="true" />
+        android:drawablePadding="-25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/partyTitle"
+        android:layout_above="@+id/startDateEditText" />
 
 </RelativeLayout>

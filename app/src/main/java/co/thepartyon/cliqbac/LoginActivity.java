@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -17,10 +18,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -33,16 +36,25 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -80,14 +92,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public static final String Name = "nameKey";
     public static final String Phone = "phoneKey";
     SharedPreferences sharedpreferences;
-    LoginButton loginButton;
 
+    //Facebook
+    CallbackManager callbackManager;
+    String profileName;
+    String profileEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Facebook SDK Initialize and Login API goes here BEFORE setContentView
         FacebookSdk.sdkInitialize(getApplicationContext());
+        setContentView(R.layout.activity_login);
+
+        //Facebook API Callback Manager and set LoginButton to ask for Permissions
+        callbackManager = CallbackManager.Factory.create();
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_friends"));
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
                     "co.thepartyon.cliqbac",
@@ -103,8 +124,60 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         }
 
+        //Facebook Login Button Custom Actions
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            //On Account Login Success
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v("LoginActivity", response.toString());
 
-        setContentView(R.layout.activity_login);
+                                // Application code
+                                try {
+                                    profileName = object.getString("name");
+                                    profileEmail = object.getString("email"); // 01/31/1980 format
+                                    //TODO: Store this Profile Information to be Used Throughout the App
+                                    //Toast.makeText(LoginActivity.this, profileName + " " + profileEmail, Toast.LENGTH_SHORT).show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender");
+                request.setParameters(parameters);
+                request.executeAsync();
+                Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(i, parameters);
+
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+                Log.v("LoginActivity", "Cancel");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+                Log.v("LoginActivity", exception.getCause().toString());
+            }
+        });
+
+
+        /* Get phone stuff
+        TelephonyManager phoneManager = (TelephonyManager)
+                getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+        String phoneNumber = phoneManager.getLine1Number();
+        */
+
+
         // Set up the login form.
         mPhoneView = (AutoCompleteTextView) findViewById(R.id.phone);
         populateAutoComplete();
@@ -133,6 +206,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
 
 
+
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void populateAutoComplete() {

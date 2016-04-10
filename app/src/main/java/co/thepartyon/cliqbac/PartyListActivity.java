@@ -49,7 +49,10 @@ public class PartyListActivity extends AppCompatActivity implements NavigationVi
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.past) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.friends) {
+            startActivity(new Intent(this, FriendsActivity.class));
         }
+
 
 
         drawer.closeDrawer(GravityCompat.START);

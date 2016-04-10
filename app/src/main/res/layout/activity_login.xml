@@ -14,7 +14,7 @@
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -63,12 +63,21 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="OR"
+                android:id="@+id/or"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp" />
+
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginBottom="30dp"
                 />
 
